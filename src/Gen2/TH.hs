@@ -193,7 +193,7 @@ ghcjsRunMeta' js_env js_settings desc tht show_code ppr_code cvt expr = do
                               pkgs
                               (hsc_HPT hsc_env)
                               (Just js_code)
-  liftIO $ debugTraceMsg dflags 3 ("Template Haskell link result" $$ (ppr $ Gen2.showLinkResult lr))
+  liftIO $ debugTraceMsg dflags 3 ("Template Haskell link result" $$ text (Gen2.showLinkResult lr))
   ext <- liftIO $ do
     llr      <- mconcat <$> mapM (Gen2.tryReadShimFile dflags)  (Gen2.linkLibRTS lr)
     lla'     <- mconcat <$> mapM (Gen2.tryReadShimFile dflags)  (Gen2.linkLibA lr)
