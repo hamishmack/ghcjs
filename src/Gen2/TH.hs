@@ -353,11 +353,11 @@ linkTh env settings js_files dflags pkgs hpt code = do
      then link
      else Gen2.getCached dflags' "template-haskell" cache_key >>= \case
             Just c  -> do
-              debugTraceMsg dflags 3 ("loaded Template Haskell runner from cache" $$ ppr (T.unpack cache_key))
+              debugTraceMsg dflags 3 ("loaded Template Haskell runner from cache" $$ T.unpack cache_key)
               return (runGet get $ BL.fromStrict c)
             Nothing -> do
               lr <- link
-              debugTraceMsg dflags 3 ("putting Template Haskell runner in cache" $$ ppr (T.unpack cache_key))
+              debugTraceMsg dflags 3 ("putting Template Haskell runner in cache" $$ T.unpack cache_key)
               Gen2.putCached dflags'
                              "template-haskell"
                              cache_key
